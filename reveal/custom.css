@@ -1,5 +1,34 @@
 @charset "UTF-8";
 
+@font-face
+{
+  font-family: "Final Frontier";
+  src: url("FINALOLD.TTF");
+}
+
+@font-face
+{
+  font-family: "Star Trek";
+  src: url("Roddenberry.ttf");
+}
+
+@font-face
+{
+  font-family: "Okuda";
+  src: url("Okuda.ttf");
+}
+
+@font-face
+{
+  font-family: "Okuda";
+  font-weight: "bold";
+  src: url("Okuda Bold.ttf");
+}
+
+.code-large code {
+  font-size: 1em;
+}
+
 i {
   margin-left: 24px;
   margin-right: 24px;
@@ -29,25 +58,6 @@ i {
   border-bottom: 2px solid #fff;
 }
 
-.job-history {
-  text-align: left;
-}
-.job-history h2 {
-  text-align: center;
-}
-.job-history i {
-  width: 65px;
-  float: left;
-  position: relative;
-  top: 6px;
-}
-.job-history small {
-  float: right;
-  position: relative;
-  top: 30px;
-  font-size: 14px;
-}
-
 .section-title {
   border-bottom: 7px solid #e9eaeb;
   margin-bottom: 36px;
@@ -55,12 +65,11 @@ i {
 
 .reveal ul.list {
   list-style-type: none;
-  text-align: center;
+  /*text-align: center;*/
 }
 .reveal ul.list li {
   font-size: 62px;
   line-height: 82px;
-  float: left;
   margin-right: 50px;
 }
 
@@ -94,16 +103,6 @@ i {
   font-size: 82px;
   line-height: 102px;
   margin-right: 16px;
-}
-
-.reveal ul.community {
-  list-style-type: none;
-}
-.community li {
-  float: left;
-  width: 450px;
-  font-size: 42px;
-  line-height: 48px;
 }
 
 .resources li {
@@ -147,7 +146,7 @@ pre.prettyprint {
 
 p {
   font-size: 45px;
-  
+  text-align: left;
 }
 
 .reveal h2 {
@@ -186,6 +185,10 @@ table tr th {
 table tr td {
   border: 1px solid #333;
   padding: 16px;
+}
+
+.center {
+  text-align: center;
 }
 
 /**
@@ -232,12 +235,16 @@ body {
   padding: 0;
   margin: 0;
   overflow: hidden;
-  font-family: 'Cherry Cream Soda', sans-serif;
+  /*font-family: 'Cherry Cream Soda', sans-serif;*/
+  /*font-family: "Final Frontier";*/
+  /*font-family: "Star Trek";*/
+  /*font-family: "Okuda";*/
+  font-family: "Rationale";
   font-size: 36px;
-  font-weight: 200;
+  /*font-weight: bold;*/
   letter-spacing: -0.02em;
   color: #e9eaeb;
-  background: #1c1e20;
+  background: #000000;
 }
 
 
@@ -355,7 +362,7 @@ body {
 }
 
 .reveal p {
-  margin-bottom: 10px;
+  margin-bottom: 36px;
 }
 
 .reveal blockquote {
@@ -388,6 +395,7 @@ body {
   font-size: 20px;
   font-family: monospace;
   line-height: 1.2em;
+  background: #222;
 
   word-wrap: break-word;
 }

@@ -164,7 +164,7 @@ var IpadView = function(ipad) {
   });
 }
 
-describe("IpadView", function() {
+xdescribe("IpadView", function() {
   var enterprise;
   var ipad;
 

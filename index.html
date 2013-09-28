@@ -8,6 +8,7 @@
     <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Cherry+Cream+Soda' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Rationale' rel='stylesheet' type='text/css'>
 
     <link rel="stylesheet" href="libraries/font-awesome.css">
 
@@ -31,8 +32,9 @@
 <div class="slides">
 
 
-<section>
-  <h2>Jasmine</h2>
+<section class="center-slide">
+  <h1>Jasmine</h1>
+  <h4>Boldly going where no test has gone before</h4>
   <!-- <div class="subsection">
     <h4>Because we all test our javascript right?</h4>
   </div> -->
@@ -52,53 +54,77 @@
 </section>
 
 <section>
-  <p>Testing is important!</p>
-  <ul>
-    <li>Better code quality</li>
-    <li>Helps find bugs</li>
-    <li>Lets you know if you broke anything</li>
-    <li>Functional Documentation</li>
-  </ul>
+  <h3>Why test code?</h3>
+  <img src="images/riker20beard.jpg">
 </section>
 
 <section>
-  We need to help Jordi build a touch interface for Picard's new ipad. 
-  Red alert
-  Yellow alert
-  Engage
-  Make it so
+  <h3>Better Code Quality</h3>
+  <img src="images/beards.png">
+</section>
+
+<section>
+  <h3>Check for breaking changes</h3>
+  <img src="images/explosion.jpg">
+</section>
+
+<section>
+  <h3>Functional Documentation</h3>
+  <img style="height: 450px" src="images/picard-surrounded-by-padds.jpg">
 </section>
 
 <section>
   <h3>How many of you write tests?</h3>
-  <h3>How many of you write tests... what for it... for your javascript?</h3>
+  <img class="fragment" src="images/picard_winning.jpg">
 </section>
 
 <section>
-  What is Jasmine
+  <h3>How many of you write tests for your javascript?</h3>
+  <img class="fragment" src="images/facepalm.jpg">
+</section>
+
+<section class="center-slide">
+  <h2>What is Jasmine?</h2>
+  <p>Jasmine is a Behavior Driven Development testing framework for JavaScript. It does not rely on browsers, DOM, or any JavaScript framework.</p>
 </section>
 
 <section>
-  How Jasmine works
+  <h3>Describe your tests as specs</h3>
+  <pre class="code-large">
+  <code>
+  describe("A suite", function() {
+    it("contains spec with an expectation", function() {
+      expect(true).toBe(true);
+    });
+  });
+  </code>
+</pre>
 </section>
 
 <section>
-  Example spec
+  <h3>Using the SpecRunner.html</h3>
+  <img src="images/spec_runner.png">
 </section>
 
 <section>
-  Example spec 2
+  <h2>Let's use Jasmine to test some javascript</h2>
 </section>
 
 <section>
-  <h3>Red Alert</h3>
+  <h4>Our mission is to help Jordi test Captain Picard's new iPad.</h4>
+  <img src="images/picard_ipad.jpg">
 </section>
 
 <section>
-  <h3>Red Alert</h3>
-  <ul>
-    <li>Shields raised</li>
-    <li>Photon torpedoes armed</li>
+  <p>Picard wants is to be able to go to Red Alert at the touch of a button.</p>
+  <img src="images/redalert.gif">
+</section>
+
+<section>
+  <h2>Red Alert</h2>
+  <ul class="list">
+    <li class="fragment">Shields raised</li>
+    <li class="fragment">Photon torpedoes armed</li>
   </ul>
 </section>
 
@@ -106,23 +132,23 @@
   <h4>Ship</h4>
   <pre data-line="3">
     <code class="language-javascript">
-    var Ship = function(name) {
-      var self = {
-        shieldsRaised: false,
-        photonTorpedoesArmed: false,
-        name: name
-      };
-      
-      self.raiseShields = function() {
-        self.shieldsRaised = true;
-      };
+  var Ship = function(name) {
+    var self = {
+      shieldsRaised: false,
+      photonTorpedoesArmed: false,
+      name: name
+    };
+    
+    self.raiseShields = function() {
+      self.shieldsRaised = true;
+    };
 
-      self.armPhotonTorpedoes = function() {
-        self.photonTorpedoesArmed = true;
-      }
-
-      return self;
+    self.armPhotonTorpedoes = function() {
+      self.photonTorpedoesArmed = true;
     }
+
+    return self;
+  }
   </code>
   </pre>
 </section>
@@ -131,16 +157,16 @@
   <h4>iPad</h4>
   <pre data-line="3">
     <code class="language-javascript">
-    var Ipad = function(ship) {
-      var self = {};
+  var Ipad = function(ship) {
+    var self = {};
 
-      self.redAlert = function() {
-        ship.raiseShields();
-        ship.armPhotonTorpedoes();
-      };
+    self.redAlert = function() {
+      ship.raiseShields();
+      ship.armPhotonTorpedoes();
+    };
 
-      return self;
-    }
+    return self;
+  }
   </code>
   </pre>
 </section>
@@ -149,28 +175,28 @@
   <h4>Red Alert Spec</h4>
   <pre data-line="3">
     <code class="language-javascript">
-    describe("Picard's new iPad", function() {
-      var enterprise;
-      var ipad;
+  describe("Picard's new iPad", function() {
+    var enterprise;
+    var ipad;
 
+    beforeEach(function() {
+      enterprise = new Ship("Enterprise");
+      ipad = new Ipad(enterprise);
+    });
+
+    describe("activating red alert", function() {
       beforeEach(function() {
-        enterprise = new Ship("Enterprise");
-        ipad = new Ipad(enterprise);
+        ipad.redAlert();
       });
 
-      describe("activating red alert", function() {
-        beforeEach(function() {
-          ipad.redAlert();
-        });
-
-        it("should raise shields", function() {
-          expect(enterprise.shieldsRaised).toEqual(true);
-        });
-        it("should arm photon torpedoes", function() {
-          expect(enterprise.photonTorpedoesArmed).toEqual(true);
-        });
+      it("should raise shields", function() {
+        expect(enterprise.shieldsRaised).toEqual(true);
+      });
+      it("should arm photon torpedoes", function() {
+        expect(enterprise.photonTorpedoesArmed).toEqual(true);
       });
     });
+  });
   </code>
   </pre>
 </section>
@@ -181,14 +207,18 @@
 </section>
 
 <section>
-  <h4>Cheating! Red, Green, Refactor</h4>
+  <h4>Whoops! Red, Green, Refactor</h4>
+  <img src="images/double_facepalm.jpg" height="450px">
 </section>
 
+
+<!-- YELLOW ALERT -->
+
 <section>
-  <h4>Yellow Alert</h4>
-  <ul>
-    <li>Raise shields</li>
-    <li>Don't arm weapons</li>
+  <h2>Yellow Alert</h2>
+  <ul class="list">
+    <li class="fragment">Raise shields</li>
+    <li class="fragment">Don't arm weapons</li>
   </ul>
 </section>
 
@@ -196,19 +226,19 @@
   <h4>Yellow Alert Spec</h4>
   <pre data-line="3">
     <code class="language-javascript">
-    describe("Picard's new iPad", function() {
-      ...
-      
-      describe("activating yellow alert", function() {
-        beforeEach(function() {
-          ipad.yellowAlert();
-        });
+  describe("Picard's new iPad", function() {
+    ...
+    
+    describe("activating yellow alert", function() {
+      beforeEach(function() {
+        ipad.yellowAlert();
+      });
 
-        it("should raise shields", function() {
-          expect(enterprise.shieldsRaised).toEqual(true);
-        });
+      it("should raise shields", function() {
+        expect(enterprise.shieldsRaised).toEqual(true);
       });
     });
+  });
   </code>
   </pre>
 </section>
@@ -221,19 +251,19 @@
   <h4>Let's add yellowAlert()</h4>
   <pre data-line="3">
     <code class="language-javascript">
-    var Ipad = function(ship) {
-      var self = {};
+  var Ipad = function(ship) {
+    var self = {};
 
-      self.redAlert = function() {
-        ship.raiseShields();
-        ship.armPhotonTorpedoes();
-      };
-      self.yellowAlert = function() {
-        
-      };
+    self.redAlert = function() {
+      ship.raiseShields();
+      ship.armPhotonTorpedoes();
+    };
+    self.yellowAlert = function() {
+      
+    };
 
-      return self;
-    }
+    return self;
+  }
   </code>
   </pre>
 </section>
@@ -243,7 +273,7 @@
 </section>
 
 <section>
-  <h4>Raise shields!</h4>
+  <h4>Raise shields()</h4>
   <pre data-line="3">
     <code class="language-javascript">
     var Ipad = function(ship) {
@@ -268,7 +298,7 @@
 </section>
 
 <section>
-  <h4>Yellow Alert</h4>
+  <h2>Yellow Alert</h2>
   <ul>
     <li><strike>Raise shields</strike></li>
     <li>Don't arm weapons</li>
@@ -279,22 +309,22 @@
   <h4>Yellow Alert Spec</h4>
   <pre data-line="3">
     <code class="language-javascript">
-    describe("Picard's new iPad", function() {
-      ...
-      
-      describe("activating yellow alert", function() {
-        beforeEach(function() {
-          ipad.yellowAlert();
-        });
+  describe("Picard's new iPad", function() {
+    ...
+    
+    describe("activating yellow alert", function() {
+      beforeEach(function() {
+        ipad.yellowAlert();
+      });
 
-        it("should raise shields", function() {
-          expect(enterprise.shieldsRaised).toEqual(true);
-        });
-        it("should NOT arm photon torpedoes", function() {
-          expect(enterprise.photonTorpedoesArmed).toEqual(false);
-        });
+      it("should raise shields", function() {
+        expect(enterprise.shieldsRaised).toEqual(true);
+      });
+      it("should NOT arm photon torpedoes", function() {
+        expect(enterprise.photonTorpedoesArmed).toEqual(false);
       });
     });
+  });
   </code>
   </pre>
 </section>
@@ -304,7 +334,7 @@
 </section>
 
 <section>
-  <h4>Yellow Alert</h4>
+  <h2>Yellow Alert</h2>
   <ul>
     <li><strike>Raise shields</strike></li>
     <li><strike>Don't arm weapons</strike></li>
@@ -313,7 +343,6 @@
 </section>
 
 <section>
-  <h2>Engage!</h2>
   <p>Picard wants to be able to go to warp at the touch of a button.</p>
   <p>But.. we don't have an interface with our warp engine yet.</p>
   <p>Let's use Jasmine spies to test our engage feature even though we don't have a warp engine interface yet</p>
@@ -323,20 +352,20 @@
   <h4>Engage Spec</h4>
   <pre data-line="3">
     <code class="language-javascript">
-    describe("Picard's new iPad", function() {
-      ...
-      
-      describe("engage", function() {
-        beforeEach(function() {
-          spyOn(enterprise, 'goToWarp');
-          ipad.engage();
-        });
+  describe("Picard's new iPad", function() {
+    ...
+    
+    describe("engage", function() {
+      beforeEach(function() {
+        spyOn(enterprise, 'goToWarp');
+        ipad.engage();
+      });
 
-        it("should call go to warp", function() {
-          expect(enterprise.goToWarp).toHaveBeenCalled();
-        });
+      it("should call go to warp", function() {
+        expect(enterprise.goToWarp).toHaveBeenCalled();
       });
     });
+  });
   </code>
   </pre>
 </section>
@@ -349,25 +378,25 @@
   <h4>goToWarp()</h4>
   <pre data-line="3">
     <code class="language-javascript">
-    var Ship = function(name) {
-      var self = {
-        shieldsRaised: false,
-        photonTorpedoesArmed: false,
-        name: name
-      };
-      
-      self.raiseShields = function() {
-        self.shieldsRaised = true;
-      };
-      self.armPhotonTorpedoes = function() {
-        self.photonTorpedoesArmed = true;
-      };
-      self.goToWarp = function() {
-        // Waiting on javascript interface to the warp engine
-      };
+  var Ship = function(name) {
+    var self = {
+      shieldsRaised: false,
+      photonTorpedoesArmed: false,
+      name: name
+    };
+    
+    self.raiseShields = function() {
+      self.shieldsRaised = true;
+    };
+    self.armPhotonTorpedoes = function() {
+      self.photonTorpedoesArmed = true;
+    };
+    self.goToWarp = function() {
+      // Waiting on javascript interface to the warp engine
+    };
 
-      return self;
-    }
+    return self;
+  }
   </code>
   </pre>
 </section>
@@ -380,22 +409,22 @@
   <h4>engage()</h4>
   <pre data-line="3">
     <code class="language-javascript">
-    var Ipad = function(ship) {
-      var self = {};
+  var Ipad = function(ship) {
+    var self = {};
 
-      self.redAlert = function() {
-        ship.raiseShields();
-        ship.armPhotonTorpedoes();
-      };
-      self.yellowAlert = function() {
-        ship.raiseShields();
-      };
-      self.engage = function() {
-        
-      };
+    self.redAlert = function() {
+      ship.raiseShields();
+      ship.armPhotonTorpedoes();
+    };
+    self.yellowAlert = function() {
+      ship.raiseShields();
+    };
+    self.engage = function() {
+      
+    };
 
-      return self;
-    }
+    return self;
+  }
   </code>
   </pre>
 </section>
@@ -408,22 +437,22 @@
   <h4>call goToWarp()</h4>
   <pre data-line="3">
     <code class="language-javascript">
-    var Ipad = function(ship) {
-      var self = {};
+  var Ipad = function(ship) {
+    var self = {};
 
-      self.redAlert = function() {
-        ship.raiseShields();
-        ship.armPhotonTorpedoes();
-      };
-      self.yellowAlert = function() {
-        ship.raiseShields();
-      };
-      self.engage = function() {
-        ship.goToWarp();
-      };
+    self.redAlert = function() {
+      ship.raiseShields();
+      ship.armPhotonTorpedoes();
+    };
+    self.yellowAlert = function() {
+      ship.raiseShields();
+    };
+    self.engage = function() {
+      ship.goToWarp();
+    };
 
-      return self;
-    }
+    return self;
+  }
   </code>
   </pre>
 </section>
@@ -433,28 +462,31 @@
 </section>
 
 <section>
-  Go to warp.
-  The catch is there is a delay when calling go to warp and actually being in warp.
+  <h3>Going to warp</h3>
+  <p>The catch is there is a delay when calling go to warp and actually being in warp.</p>
 </section>
 
 <section>
   <h4>goToWarp() spec</h4>
   <pre data-line="3">
     <code class="language-javascript">
-    describe("Starship", function() {
-      var ship;
+  describe("Starship", function() {
+    var ship;
+
+    beforeEach(function() {
+      ship = new Ship("Enterprise");
+    });
+
+    describe("goToWarp", function() {
       beforeEach(function() {
-        ship = new Ship("Enterprise");
+        ship.goToWarp();
       });
-      describe("goToWarp", function() {
-        beforeEach(function() {
-          ship.goToWarp();
-        });
-        it("should send ship to warp", function() {
-          expect(ship.atWarp).toEqual(true)
-        });
+      it("should send ship to warp", function() {
+        expect(ship.atWarp).toEqual(true)
       });
     });
+
+  });
   </code>
   </pre>
 </section>
@@ -463,23 +495,23 @@
   <h4>Ship</h4>
   <pre data-line="3">
     <code class="language-javascript">
-    var Ship = function(name) {
-      var self = {
-        shieldsRaised: false,
-        photonTorpedoesArmed: false,
-        atWarp: false,
-        name: name
-      };
-      
-      ...
-      self.goToWarp = function() {
-        setTimeout(function() {
-          self.atWarp = true
-        }, 2000);
-      };
+  var Ship = function(name) {
+    var self = {
+      shieldsRaised: false,
+      photonTorpedoesArmed: false,
+      atWarp: false,
+      name: name
+    };
+    
+    ...
+    self.goToWarp = function() {
+      setTimeout(function() {
+        self.atWarp = true
+      }, 2000);
+    };
 
-      return self;
-    }
+    return self;
+  }
   </code>
   </pre>
 </section>
@@ -489,66 +521,73 @@
 </section>
 
 <section>
-  <h4>wait for it</h4>
+  <h4>Wait for it</h4>
   <pre data-line="3">
     <code class="language-javascript">
-    describe("Starship", function() {
+  describe("Starship", function() {
+
+    describe("goToWarp", function() {
       var ship;
+
       beforeEach(function() {
         ship = new Ship("Enterprise");
-      });
-      describe("goToWarp", function() {
-        beforeEach(function() {
-          runs(function() {
-            ship.goToWarp();
-          });
 
-          waitsFor(function() {
-            return ship.atWarp == true;
-          });
+        runs(function() {
+          ship.goToWarp();
         });
-        it("should send ship to warp", function() {
-          expect(ship.atWarp).toEqual(true)
+
+        waitsFor(function() {
+          return ship.atWarp == true;
         });
+      });
+      it("should send ship to warp", function() {
+        expect(ship.atWarp).toEqual(true)
       });
     });
+
+  });
   </code>
   </pre>
 </section>
 
 <section>
+  <h3>Wait for the callback</h3>
   <img src="images/goto_warp_wait.png">
 </section>
 
 <section>
+  <h3>Passing</h3>
   <img src="images/goto_warp_passing.png">
 </section>
 
 <section>
-  Request a drink
+  <h3>Earl Grey Tea. Hot.</h3>
+  <p>Now Picard wants to be able to request his favorite drink from the replicator.</p>
+  <img style="height: 350px" src="images/tea.jpg">
 </section>
 
 <section>
   <h4>requestDrink spec</h4>
   <pre data-line="3">
     <code class="language-javascript">
-    describe("requestDrink", function() {
-      it("should return a earl gray tea hot", function() {
-        var drink = ipad.requestDrink();
-        expect(drink.drink_type).toEqual("Earl Grey Tea");
-        expect(drink.temperature).toEqual("hot");
-      });
+  describe("requestDrink", function() {
+    it("should return a Earl Grey Tea, Hot", function() {
+      var drink = ipad.requestDrink();
+      expect(drink.drink_type).toEqual("Earl Grey Tea");
+      expect(drink.temperature).toEqual("hot");
     });
+  });
   </code>
   </pre>
 </section>
 
 <section>
+  <!-- <h3>no method 'requestDrink'</h3> -->
   <img src="images/request_drink_failing.png">
 </section>
 
 <section>
-  <h4>wait for it</h4>
+  <h4>requestDrink()</h4>
   <pre data-line="3">
     <code class="language-javascript">
     var Ipad = function(ship) {
@@ -565,52 +604,53 @@
 </section>
 
 <section>
+  <!-- <h4>drink undefined</h4> -->
   <img src="images/request_drink_failing2.png">
 </section>
 
 <section>
-  <h4>wait for it</h4>
+  <h4>Replicator</h4>
   <pre data-line="3">
     <code class="language-javascript">
-    var Replicator = {
-      makeDrink: function() {
-      }
+  var Replicator = {
+    makeDrink: function() {
     }
+  }
   </code>
   </pre>
   <pre data-line="3">
     <code class="language-javascript">
-var Ipad = function(ship) {
-  var self = {};
-  ...
+  var Ipad = function(ship) {
+    var self = {};
+    ...
 
-  self.requestDrink = function() {
-    return Replicator.makeDrink("Earl Grey Tea", "hot");
-  };
+    self.requestDrink = function() {
+      return Replicator.makeDrink("Earl Grey Tea", "hot");
+    };
 
-  return self;
-}
+    return self;
+  }
   </code>
   </pre>
 </section>
 
 <section>
-  <h4>wait for it</h4>
+  <h4>andCallFake()</h4>
   <pre data-line="3">
     <code class="language-javascript">
-    describe("requestDrink", function() {
-      it("should return a Earl Grey Tea, Hot", function() {
-        spyOn(Replicator, "makeDrink").andCallFake(function(drinkType, temperature) {
-          return {
-            drink_type: drinkType,
-            temperature: temperature
-          }
-        });
-        var drink = ipad.requestDrink();
-        expect(drink.drink_type).toEqual("Earl Grey Tea");
-        expect(drink.temperature).toEqual("hot");
+  describe("requestDrink", function() {
+    it("should return a Earl Grey Tea, Hot", function() {
+      spyOn(Replicator, "makeDrink").andCallFake(function(drinkType, temperature) {
+        return {
+          drink_type: drinkType,
+          temperature: temperature
+        }
       });
+      var drink = ipad.requestDrink();
+      expect(drink.drink_type).toEqual("Earl Grey Tea");
+      expect(drink.temperature).toEqual("hot");
     });
+  });
   </code>
   </pre>
 </section>
@@ -622,144 +662,130 @@ var Ipad = function(ship) {
 <!-- Hailing -->
 
 <section>
-  hail
+  <h3>Send Hail</h3>
+  <p class="center">Now Picard wants to be able to send a hail.</p>
+  <img style="height: 400px" src="images/viewscreen.jpeg">
 </section>
 
 <section>
-  <h4>rut roh</h4>
+  <h4>AJAX - rut roh</h4>
   <pre data-line="3">
     <code class="language-javascript">
-    var Ipad = function(ship) {
-      var self = {};
-      ...
-      self.sendHail = function(callback) {
-        $.ajax({
-          type: "GET",
-          url: "http://space/the_final_frontier",
-          success: function(response) {
-            callback();
-          }
-        });
-      }
-
-      return self;
-    }
-  </code>
-  </pre>
-</section>
-
-<section>
-  <h4>rut roh</h4>
-  <pre data-line="3">
-    <code class="language-javascript">
-    describe("sendHail", function() {
-      it("should send hail and execute callback", function() {
-        spyOn($, "ajax").andCallFake(function(options) {
-          options.success();
-        });
-        callback = jasmine.createSpy();
-        ipad.sendHail(callback);
-
-        expect(callback).toHaveBeenCalled();
+  var Ipad = function(ship) {
+    var self = {};
+    ...
+    self.sendHail = function(callback) {
+      $.ajax({
+        type: "GET",
+        url: "http://space/the_final_frontier",
+        success: function(response) {
+          callback();
+        }
       });
-    });
+    };
+
+    return self;
+  }
   </code>
   </pre>
 </section>
 
+<section>
+  <h4>sendHail spec</h4>
+  <pre data-line="3">
+    <code class="language-javascript">
+  describe("sendHail", function() {
+    it("should send hail and execute callback", function() {
+      spyOn($, "ajax").andCallFake(function(options) {
+        options.success();
+      });
+      callback = jasmine.createSpy();
+      ipad.sendHail(callback);
+
+      expect(callback).toHaveBeenCalled();
+    });
+  });
+  </code>
+  </pre>
+</section>
+
+<section>
+  <img src="images/send_hail_passing.png">
+</section>
 
 <!-- TESTING VIEW -->
 
 <section>
-  Testing the $View
+  <h3>Testing jQuery & DOM</h3>
+  <p class="center">Now, Jordi wants to test some of the interface code</p>
+  <img src="images/lcars3.png">
 </section>
 
 <section>
-  <h4>wait for it</h4>
+  <h4>How do we test this?</h4>
   <pre data-line="3">
     <code class="language-javascript">
-    $(function() {
-      var enterprise = new Ship("enterprise");
-      var ipad = new Ipad(enterprise);
+  $(function() {
+    var enterprise = new Ship("enterprise");
+    var ipad = new Ipad(enterprise);
 
-      $("#red-alert").click(function() {
-        ipad.redAlert();
+    $("#red-alert").click(function() {
+      ipad.redAlert();
+    });
+  });
+  </code>
+  </pre>
+</section>
+
+<section>
+  <h4>IpadView</h4>
+  <pre data-line="3">
+    <code class="language-javascript">
+  var IpadView = function(ipad) {
+    $("#red-alert").click(function() {
+      ipad.redAlert();
+    });
+  }
+  </code>
+  </pre>
+</section>
+
+<section>
+  <h4>Add div to SpecRunner</h4>
+  <pre data-line="3">
+    <code class="language-javascript">
+  &lt;div id=&quot;sandbox&quot;&gt;&lt;/div&gt;
+
+  </code>
+  </pre>
+</section>
+
+<section>
+  <pre data-line="3">
+    <code class="language-javascript">
+  describe("IpadView", function() {
+    var enterprise;
+    var ipad;
+
+    beforeEach(function() {
+      enterprise = new Ship("Enterprise");
+      ipad = new Ipad(enterprise);
+    });
+
+    describe("activate red alert", function() {
+      beforeEach(function() {
+        $("#sandbox").html("&lt;div id=&quot;sandbox&quot;&gt;&lt;/div&gt;");
+        new IpadView(ipad);
+        $("#red-alert").trigger("click");
+      });
+      afterEach(function() {
+        $("#sandbox").html();
+      });
+      it("should set to red alert", function() {
+        expect(enterprise.shieldsRaised).toEqual(true);
       });
     });
-  </code>
-  </pre>
-</section>
-
-<section>
-  How do I test this?
-</section>
-
-<section>
-  <h4>wait for it</h4>
-  <pre data-line="3">
-    <code class="language-javascript">
-    $(function() {
-      var enterprise = new Ship("enterprise");
-      var ipad = new Ipad(enterprise);
-
-      $("#red-alert").click(function() {
-        ipad.redAlert();
-      });
-    });
-  </code>
-  </pre>
-</section>
-
-<section>
-  <h4>wait for it</h4>
-  <pre data-line="3">
-    <code class="language-javascript">
-    var IpadView = function(ipad) {
-      $("#red-alert").click(function() {
-        ipad.redAlert();
-      });
-    }
-  </code>
-  </pre>
-</section>
-
-<section>
-  <h4>wait for it</h4>
-  <pre data-line="3">
-    <code class="language-javascript">
-      &lt;div id=&quot;sandbox&quot;&gt;&lt;/div&gt;
-
-  </code>
-  </pre>
-</section>
-
-<section>
-  <h4>wait for it</h4>
-  <pre data-line="3">
-    <code class="language-javascript">
-      describe("IpadView", function() {
-        var enterprise;
-        var ipad;
-
-        beforeEach(function() {
-          enterprise = new Ship("Enterprise");
-          ipad = new Ipad(enterprise);
-        });
-
-        describe("activate red alert", function() {
-          beforeEach(function() {
-            $("#sandbox").html("&lt;div id=&quot;sandbox&quot;&gt;&lt;/div&gt;");
-            new IpadView(ipad);
-            $("#red-alert").trigger("click");
-          });
-          afterEach(function() {
-            $("#sandbox").html();
-          });
-          it("should set to red alert", function() {
-            expect(enterprise.shieldsRaised).toEqual(true);
-          });
-        });
-      });
+  });
   </code>
   </pre>
 </section>
@@ -769,15 +795,27 @@ var Ipad = function(ship) {
 </section>
 
 <section>
-  <h2>References</h2>
-  <p>http://stackoverflow.com/questions/67299/is-unit-testing-worth-the-effort</p>
-  <p>http://pivotal.github.io/jasmine/</p>
-  <p>http://stackoverflow.com/questions/4662641/how-do-i-verify-jquery-ajax-events-with-jasmine</p>
+  <h2>Review</h2>
+  <ul class="list">
+    <li>Basic Specs</li>
+    <li>Spies</li>
+    <li>Mock AJAX</li>
+    <li>jQuery DOM</li>
+  </ul>
 </section>
+
 
 
 <section class="center-slide">
   <h2>Thanks! Any Questions?</h2>
+</section>
+
+<section>
+  <h2>References</h2>
+  <a href='http://pivotal.github.io/jasmine/'>http://pivotal.github.io/jasmine/</a>
+  <h4 style="margin-top: 36px">Couple good Stackoverflow Q&A</h4>
+  <a href='http://stackoverflow.com/questions/67299/is-unit-testing-worth-the-effort'>http://stackoverflow.com/questions/67299/is-unit-testing-worth-the-effort</a>
+  <a href='http://stackoverflow.com/questions/4662641/how-do-i-verify-jquery-ajax-events-with-jasmine'>http://stackoverflow.com/questions/4662641/how-do-i-verify-jquery-ajax-events-with-jasmine</a>
 </section>
 
 </div>
